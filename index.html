@@ -1,205 +1,42 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RZ Residences | Boutique Living in Puerto Vallarta's Romantic Zone</title>
     <meta name="description" content="22 exclusive residences one block from Los Muertos Beach. Pre-sales now open. Delivery April 2028.">
     <meta name="theme-color" content="#1A2A40">
-    
-    <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="/icon-192.png">
-    
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --sand: #E8DCC4;
-            --sand-light: #F2EDE3;
-            --navy: #1A2A40;
-            --navy-light: #2D3E54;
-            --terracotta: #C46A4A;
-            --terracotta-dark: #A85A3D;
-            --sea-salt: #F7F5F0;
-            --volcanic: #2A2A2A;
-            --volcanic-muted: rgba(42, 42, 42, 0.7);
-            --font-display: 'Playfair Display', Georgia, serif;
-            --font-body: 'DM Sans', -apple-system, sans-serif;
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 4rem;
-            --space-xl: 6rem;
-            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-            --duration: 0.4s;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); font-weight: 400; color: var(--volcanic); background: var(--sand); line-height: 1.6; overflow-x: hidden; }
-        
-        h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.2; }
-        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: -0.02em; }
-        h2 { font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -0.01em; }
-        p { font-size: clamp(1rem, 1.5vw, 1.125rem); color: var(--volcanic-muted); }
-        
-        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 var(--space-md); }
-        
-        /* HERO */
-        .hero { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; position: relative; background: linear-gradient(135deg, var(--sand) 0%, var(--sand-light) 100%); overflow: hidden; }
-        .hero::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; }
-        
-        .nav { padding: var(--space-md) 0; position: relative; z-index: 10; }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; color: var(--navy); text-decoration: none; letter-spacing: 0.05em; }
-        .logo span { color: var(--terracotta); }
-        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--volcanic-muted); text-decoration: none; transition: color var(--duration) var(--ease-out); }
-        .nav-link:hover { color: var(--terracotta); }
-        
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: center; position: relative; z-index: 5; }
-        .hero-text { padding: var(--space-lg) 0; }
-        
-        .hero-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--terracotta); margin-bottom: var(--space-sm); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.2s forwards; }
-        .hero-title { color: var(--navy); margin-bottom: var(--space-md); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.4s forwards; }
-        .hero-title em { font-style: italic; color: var(--terracotta); }
-        .hero-description { font-size: 1.125rem; max-width: 480px; margin-bottom: var(--space-md); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.6s forwards; }
-        
-        .hero-stats { display: flex; gap: var(--space-lg); margin-bottom: var(--space-md); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 0.8s forwards; }
-        .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 600; color: var(--navy); line-height: 1; }
-        .stat-label { font-size: 0.875rem; color: var(--volcanic-muted); margin-top: 0.25rem; }
-        
-        .hero-cta { display: flex; gap: var(--space-sm); flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s var(--ease-out) 1s forwards; }
-        
-        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; text-decoration: none; border-radius: 4px; border: none; cursor: pointer; transition: all var(--duration) var(--ease-out); }
-        .btn-primary { background: var(--terracotta); color: white; }
-        .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196, 106, 74, 0.3); }
-        .btn-secondary { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
-        .btn-secondary:hover { background: var(--navy); color: white; }
-        
-        .hero-visual { position: relative; height: 100%; min-height: 500px; opacity: 0; animation: fadeIn 1s var(--ease-out) 0.5s forwards; }
-        .hero-image-wrapper { position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 120%; aspect-ratio: 4/5; border-radius: 8px 0 0 8px; overflow: hidden; box-shadow: -20px 20px 60px rgba(26, 42, 64, 0.15); }
-        .hero-image { width: 100%; height: 100%; object-fit: cover; background: linear-gradient(145deg, var(--navy-light) 0%, var(--navy) 100%); }
-        
-        .availability-badge { position: absolute; left: -20px; bottom: 15%; background: var(--sea-salt); padding: var(--space-sm) var(--space-md); border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); opacity: 0; animation: fadeUp 0.8s var(--ease-out) 1.2s forwards; }
-        .badge-number { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--terracotta); }
-        .badge-text { font-size: 0.875rem; color: var(--volcanic-muted); }
-        
-        .hero-footer { padding: var(--space-md) 0; border-top: 1px solid rgba(42, 42, 42, 0.1); position: relative; z-index: 5; }
-        .hero-footer-inner { display: flex; justify-content: space-between; align-items: center; }
-        .delivery-info { display: flex; align-items: center; gap: var(--space-xs); font-size: 0.875rem; color: var(--volcanic-muted); }
-        .delivery-info strong { color: var(--navy); font-weight: 600; }
-        .scroll-indicator { display: flex; align-items: center; gap: var(--space-xs); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--volcanic-muted); }
-        .scroll-line { width: 40px; height: 1px; background: var(--volcanic-muted); position: relative; overflow: hidden; }
-        .scroll-line::after { content: ''; position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: var(--terracotta); animation: scrollPulse 2s ease-in-out infinite; }
-        
-        /* UBICACIÓN */
-        .ubicacion { padding: var(--space-xl) 0; background: var(--sea-salt); }
-        .ubicacion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: center; }
-        .ubicacion-content h2 { color: var(--navy); margin-bottom: var(--space-sm); }
-        .ubicacion-content p { margin-bottom: var(--space-md); }
-        .walkable-spots { display: flex; flex-direction: column; gap: var(--space-sm); }
-        .spot { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: white; border-radius: 4px; transition: transform var(--duration) var(--ease-out); }
-        .spot:hover { transform: translateX(8px); }
-        .spot-time { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--terracotta); min-width: 60px; }
-        .spot-name { font-size: 0.9375rem; color: var(--volcanic); }
-        .ubicacion-map { aspect-ratio: 1; background: var(--sand); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-        .map-placeholder { text-align: center; color: var(--volcanic-muted); }
-        
-        /* CALCULADORA */
-        .calculadora { padding: var(--space-xl) 0; background: var(--sand); }
-        .calc-header { text-align: center; max-width: 600px; margin: 0 auto var(--space-lg); }
-        .calc-header h2 { color: var(--navy); margin-bottom: var(--space-sm); }
-        .calc-card { max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-radius: 12px; padding: var(--space-lg); box-shadow: 0 20px 60px rgba(26, 42, 64, 0.08); }
-        .calc-inputs { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-bottom: var(--space-md); }
-        .calc-group { display: flex; flex-direction: column; gap: var(--space-xs); }
-        .calc-label { font-size: 0.875rem; font-weight: 500; color: var(--volcanic-muted); }
-        .calc-select { padding: 1rem; font-family: var(--font-body); font-size: 1rem; border: 1px solid rgba(42, 42, 42, 0.15); border-radius: 4px; background: white; color: var(--volcanic); transition: border-color var(--duration) var(--ease-out); }
-        .calc-select:focus { outline: none; border-color: var(--terracotta); }
-        .calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); padding-top: var(--space-md); border-top: 1px solid rgba(42, 42, 42, 0.1); }
-        .result-item { text-align: center; padding: var(--space-sm); }
-        .result-value { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--navy); line-height: 1; margin-bottom: 0.25rem; }
-        .result-value.highlight { color: var(--terracotta); }
-        .result-label { font-size: 0.875rem; color: var(--volcanic-muted); }
-        .calc-disclaimer { text-align: center; font-size: 0.75rem; color: var(--volcanic-muted); margin-top: var(--space-md); opacity: 0.7; }
-        
-        /* UNIDADES */
-        .unidades { padding: var(--space-xl) 0; background: var(--sea-salt); }
-        .unidades-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-sm); }
-        .unidades-header h2 { color: var(--navy); }
-        .unidades-filter { display: flex; gap: var(--space-xs); }
-        .filter-btn { padding: 0.5rem 1rem; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; border: 1px solid var(--navy); background: transparent; color: var(--navy); border-radius: 4px; cursor: pointer; transition: all var(--duration) var(--ease-out); }
-        .filter-btn.active, .filter-btn:hover { background: var(--navy); color: white; }
-        .unidades-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-md); }
-        .unit-card { background: white; border-radius: 8px; padding: var(--space-md); transition: all var(--duration) var(--ease-out); position: relative; cursor: pointer; }
-        .unit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26, 42, 64, 0.1); }
-        .unit-card.sold { opacity: 0.5; pointer-events: none; }
-        .unit-badge { position: absolute; top: var(--space-sm); right: var(--space-sm); font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.25rem 0.5rem; border-radius: 2px; }
-        .unit-badge.available { background: rgba(196, 106, 74, 0.1); color: var(--terracotta); }
-        .unit-badge.sold { background: rgba(42, 42, 42, 0.1); color: var(--volcanic-muted); }
-        .unit-badge.recommended { background: var(--terracotta); color: white; }
-        .unit-number { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; color: var(--navy); margin-bottom: var(--space-xs); }
-        .unit-type { font-size: 0.875rem; color: var(--volcanic-muted); margin-bottom: var(--space-sm); }
-        .unit-details { display: flex; justify-content: space-between; padding-top: var(--space-sm); border-top: 1px solid rgba(42, 42, 42, 0.1); }
-        .unit-sqft { font-size: 0.875rem; color: var(--volcanic-muted); }
-        .unit-price { font-size: 0.875rem; font-weight: 600; color: var(--navy); }
-        
-        /* CONTACTO */
-        .contacto { padding: var(--space-xl) 0; background: var(--navy); color: white; }
-        .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: center; }
-        .contacto-content h2 { color: white; margin-bottom: var(--space-sm); }
-        .contacto-content p { color: rgba(255, 255, 255, 0.7); margin-bottom: var(--space-md); }
-        .contact-info { display: flex; flex-direction: column; gap: var(--space-sm); }
-        .contact-item { display: flex; align-items: center; gap: var(--space-sm); color: rgba(255, 255, 255, 0.9); text-decoration: none; font-size: 1rem; transition: color var(--duration) var(--ease-out); }
-        .contact-item:hover { color: var(--terracotta); }
-        .contacto-cta { text-align: center; }
-        .contacto-cta .btn-primary { padding: 1.25rem 3rem; font-size: 1rem; }
-        
-        /* FOOTER */
-        .footer { padding: var(--space-md) 0; background: var(--volcanic); text-align: center; }
-        .footer p { font-size: 0.875rem; color: rgba(255, 255, 255, 0.5); }
-        .footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
-        .footer a:hover { color: var(--terracotta); }
-        
-        /* WHATSAPP */
-        .whatsapp-float { position: fixed; bottom: var(--space-md); right: var(--space-md); z-index: 1000; display: flex; align-items: center; gap: var(--space-xs); padding: 0.875rem 1.5rem; background: var(--terracotta); color: white; text-decoration: none; font-weight: 500; font-size: 0.9375rem; border-radius: 50px; box-shadow: 0 8px 24px rgba(196, 106, 74, 0.4); transition: all var(--duration) var(--ease-out); }
-        .whatsapp-float:hover { background: var(--terracotta-dark); transform: translateY(-2px); }
-        .whatsapp-float svg { width: 20px; height: 20px; }
-        
-        /* INSTALL */
-        #install-btn { position: fixed; bottom: var(--space-md); left: var(--space-md); z-index: 1000; padding: 0.75rem 1.25rem; background: var(--navy); color: white; border: none; border-radius: 50px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; cursor: pointer; box-shadow: 0 4px 16px rgba(26, 42, 64, 0.3); transition: all var(--duration) var(--ease-out); }
-        #install-btn:hover { background: var(--navy-light); transform: translateY(-2px); }
-        #install-btn.hidden { display: none; }
-        
-        /* ANIMATIONS */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes scrollPulse { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
-        
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-text { order: 2; }
-            .hero-visual { order: 1; min-height: 300px; }
-            .hero-image-wrapper { position: relative; right: 0; top: 0; transform: none; width: 100%; border-radius: 8px; }
-            .availability-badge { left: 50%; transform: translateX(-50%); bottom: -20px; }
-            .hero-stats { justify-content: center; }
-            .hero-cta { justify-content: center; }
-            .hero-description { margin-left: auto; margin-right: auto; }
-            .ubicacion-grid, .contacto-grid { grid-template-columns: 1fr; }
-            .calc-inputs, .calc-results { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 640px) {
-            .hero-stats { flex-direction: column; gap: var(--space-sm); align-items: center; }
-            .hero-cta { flex-direction: column; width: 100%; }
-            .btn { width: 100%; justify-content: center; }
-            .unidades-header { flex-direction: column; align-items: flex-start; }
-            .whatsapp-float span { display: none; }
-            .whatsapp-float { padding: 1rem; border-radius: 50%; }
-        }
+        :root{--sand:#E8DCC4;--sand-light:#F2EDE3;--navy:#1A2A40;--navy-light:#2D3E54;--terracotta:#C46A4A;--terracotta-dark:#A85A3D;--sea-salt:#F7F5F0;--volcanic:#2A2A2A;--volcanic-muted:rgba(42,42,42,0.7);--font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',-apple-system,sans-serif;--space-xs:0.5rem;--space-sm:1rem;--space-md:2rem;--space-lg:4rem;--space-xl:6rem;--ease-out:cubic-bezier(0.22,1,0.36,1);--duration:0.4s}
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--font-body);font-weight:400;color:var(--volcanic);background:var(--sand);line-height:1.6;overflow-x:hidden}
+        h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.2}h1{font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-0.02em}h2{font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-0.01em}p{font-size:clamp(1rem,1.5vw,1.125rem);color:var(--volcanic-muted)}
+        .container{width:100%;max-width:1400px;margin:0 auto;padding:0 var(--space-md)}
+        .lang-toggle{display:flex;gap:0.5rem;align-items:center}.lang-btn{background:transparent;border:2px solid transparent;border-radius:4px;padding:0.25rem;cursor:pointer;opacity:0.5;transition:all var(--duration) var(--ease-out);display:flex;align-items:center;justify-content:center}.lang-btn:hover{opacity:0.8}.lang-btn.active{opacity:1;border-color:var(--terracotta)}.lang-btn img{width:24px;height:18px;object-fit:cover;border-radius:2px}
+        .hero{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;position:relative;background:linear-gradient(135deg,var(--sand) 0%,var(--sand-light) 100%);overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.03;pointer-events:none}
+        .nav{padding:var(--space-md) 0;position:relative;z-index:10}.nav-inner{display:flex;justify-content:space-between;align-items:center}.logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--navy);text-decoration:none;letter-spacing:0.05em}.logo span{color:var(--terracotta)}.nav-right{display:flex;align-items:center;gap:var(--space-md)}.nav-link{font-size:0.875rem;font-weight:500;color:var(--volcanic-muted);text-decoration:none;transition:color var(--duration) var(--ease-out)}.nav-link:hover{color:var(--terracotta)}
+        .hero-content{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);align-items:center;position:relative;z-index:5}.hero-text{padding:var(--space-lg) 0}
+        .hero-label{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--terracotta);margin-bottom:var(--space-sm);opacity:0;animation:fadeUp 0.8s var(--ease-out) 0.2s forwards}.hero-title{color:var(--navy);margin-bottom:var(--space-md);opacity:0;animation:fadeUp 0.8s var(--ease-out) 0.4s forwards}.hero-title em{font-style:italic;color:var(--terracotta)}.hero-description{font-size:1.125rem;max-width:480px;margin-bottom:var(--space-md);opacity:0;animation:fadeUp 0.8s var(--ease-out) 0.6s forwards}
+        .hero-stats{display:flex;gap:var(--space-lg);margin-bottom:var(--space-md);opacity:0;animation:fadeUp 0.8s var(--ease-out) 0.8s forwards}.stat-number{font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--navy);line-height:1}.stat-label{font-size:0.875rem;color:var(--volcanic-muted);margin-top:0.25rem}
+        .hero-cta{display:flex;gap:var(--space-sm);flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s var(--ease-out) 1s forwards}
+        .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:1rem 2rem;font-family:var(--font-body);font-size:0.9375rem;font-weight:500;text-decoration:none;border-radius:4px;border:none;cursor:pointer;transition:all var(--duration) var(--ease-out)}.btn-primary{background:var(--terracotta);color:white}.btn-primary:hover{background:var(--terracotta-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,106,74,0.3)}.btn-secondary{background:transparent;color:var(--navy);border:1px solid var(--navy)}.btn-secondary:hover{background:var(--navy);color:white}
+        .hero-visual{position:relative;height:100%;min-height:500px;opacity:0;animation:fadeIn 1s var(--ease-out) 0.5s forwards}.hero-image-wrapper{position:absolute;right:-10%;top:50%;transform:translateY(-50%);width:120%;aspect-ratio:4/5;border-radius:8px 0 0 8px;overflow:hidden;box-shadow:-20px 20px 60px rgba(26,42,64,0.15)}.hero-image{width:100%;height:100%;object-fit:cover;background:linear-gradient(145deg,var(--navy-light) 0%,var(--navy) 100%)}
+        .availability-badge{position:absolute;left:-20px;bottom:15%;background:var(--sea-salt);padding:var(--space-sm) var(--space-md);border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,0.1);opacity:0;animation:fadeUp 0.8s var(--ease-out) 1.2s forwards}.badge-number{font-family:var(--font-display);font-size:1.75rem;font-weight:600;color:var(--terracotta)}.badge-text{font-size:0.875rem;color:var(--volcanic-muted)}
+        .hero-footer{padding:var(--space-md) 0;border-top:1px solid rgba(42,42,42,0.1);position:relative;z-index:5}.hero-footer-inner{display:flex;justify-content:space-between;align-items:center}.delivery-info{display:flex;align-items:center;gap:var(--space-xs);font-size:0.875rem;color:var(--volcanic-muted)}.delivery-info strong{color:var(--navy);font-weight:600}.scroll-indicator{display:flex;align-items:center;gap:var(--space-xs);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--volcanic-muted)}.scroll-line{width:40px;height:1px;background:var(--volcanic-muted);position:relative;overflow:hidden}.scroll-line::after{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:var(--terracotta);animation:scrollPulse 2s ease-in-out infinite}
+        .ubicacion{padding:var(--space-xl) 0;background:var(--sea-salt)}.ubicacion-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);align-items:center}.ubicacion-content h2{color:var(--navy);margin-bottom:var(--space-sm)}.ubicacion-content p{margin-bottom:var(--space-md)}.walkable-spots{display:flex;flex-direction:column;gap:var(--space-sm)}.spot{display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-sm);background:white;border-radius:4px;transition:transform var(--duration) var(--ease-out)}.spot:hover{transform:translateX(8px)}.spot-time{font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--terracotta);min-width:60px}.spot-name{font-size:0.9375rem;color:var(--volcanic)}.ubicacion-map{aspect-ratio:1;background:var(--sand);border-radius:8px;display:flex;align-items:center;justify-content:center}.map-placeholder{text-align:center;color:var(--volcanic-muted)}
+        .calculadora{padding:var(--space-xl) 0;background:var(--sand)}.calc-header{text-align:center;max-width:600px;margin:0 auto var(--space-lg)}.calc-header h2{color:var(--navy);margin-bottom:var(--space-sm)}.calc-card{max-width:800px;margin:0 auto;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);border-radius:12px;padding:var(--space-lg);box-shadow:0 20px 60px rgba(26,42,64,0.08)}.calc-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);margin-bottom:var(--space-md)}.calc-group{display:flex;flex-direction:column;gap:var(--space-xs)}.calc-label{font-size:0.875rem;font-weight:500;color:var(--volcanic-muted)}.calc-select{padding:1rem;font-family:var(--font-body);font-size:1rem;border:1px solid rgba(42,42,42,0.15);border-radius:4px;background:white;color:var(--volcanic);transition:border-color var(--duration) var(--ease-out)}.calc-select:focus{outline:none;border-color:var(--terracotta)}.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-md);padding-top:var(--space-md);border-top:1px solid rgba(42,42,42,0.1)}.result-item{text-align:center;padding:var(--space-sm)}.result-value{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--navy);line-height:1;margin-bottom:0.25rem}.result-value.highlight{color:var(--terracotta)}.result-label{font-size:0.875rem;color:var(--volcanic-muted)}.calc-disclaimer{text-align:center;font-size:0.75rem;color:var(--volcanic-muted);margin-top:var(--space-md);opacity:0.7}
+        .unidades{padding:var(--space-xl) 0;background:var(--sea-salt)}.unidades-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:var(--space-lg);flex-wrap:wrap;gap:var(--space-sm)}.unidades-header h2{color:var(--navy)}.unidades-filter{display:flex;gap:var(--space-xs)}.filter-btn{padding:0.5rem 1rem;font-family:var(--font-body);font-size:0.875rem;font-weight:500;border:1px solid var(--navy);background:transparent;color:var(--navy);border-radius:4px;cursor:pointer;transition:all var(--duration) var(--ease-out)}.filter-btn.active,.filter-btn:hover{background:var(--navy);color:white}.unidades-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-md)}.unit-card{background:white;border-radius:8px;padding:var(--space-md);transition:all var(--duration) var(--ease-out);position:relative;cursor:pointer}.unit-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,42,64,0.1)}.unit-card.sold{opacity:0.5;pointer-events:none}.unit-badge{position:absolute;top:var(--space-sm);right:var(--space-sm);font-size:0.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:0.25rem 0.5rem;border-radius:2px}.unit-badge.available{background:rgba(196,106,74,0.1);color:var(--terracotta)}.unit-badge.sold{background:rgba(42,42,42,0.1);color:var(--volcanic-muted)}.unit-badge.recommended{background:var(--terracotta);color:white}.unit-number{font-family:var(--font-display);font-size:1.75rem;font-weight:600;color:var(--navy);margin-bottom:var(--space-xs)}.unit-type{font-size:0.875rem;color:var(--volcanic-muted);margin-bottom:var(--space-sm)}.unit-details{display:flex;justify-content:space-between;padding-top:var(--space-sm);border-top:1px solid rgba(42,42,42,0.1)}.unit-sqft{font-size:0.875rem;color:var(--volcanic-muted)}.unit-price{font-size:0.875rem;font-weight:600;color:var(--navy)}
+        .contacto{padding:var(--space-xl) 0;background:var(--navy);color:white}.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-lg);align-items:center}.contacto-content h2{color:white;margin-bottom:var(--space-sm)}.contacto-content p{color:rgba(255,255,255,0.7);margin-bottom:var(--space-md)}.contact-info{display:flex;flex-direction:column;gap:var(--space-sm)}.contact-item{display:flex;align-items:center;gap:var(--space-sm);color:rgba(255,255,255,0.9);text-decoration:none;font-size:1rem;transition:color var(--duration) var(--ease-out)}.contact-item:hover{color:var(--terracotta)}.contacto-cta{text-align:center}.contacto-cta .btn-primary{padding:1.25rem 3rem;font-size:1rem}
+        .footer{padding:var(--space-md) 0;background:var(--volcanic);text-align:center}.footer p{font-size:0.875rem;color:rgba(255,255,255,0.5)}.footer a{color:rgba(255,255,255,0.7);text-decoration:none}.footer a:hover{color:var(--terracotta)}
+        .whatsapp-float{position:fixed;bottom:var(--space-md);right:var(--space-md);z-index:1000;display:flex;align-items:center;gap:var(--space-xs);padding:0.875rem 1.5rem;background:var(--terracotta);color:white;text-decoration:none;font-weight:500;font-size:0.9375rem;border-radius:50px;box-shadow:0 8px 24px rgba(196,106,74,0.4);transition:all var(--duration) var(--ease-out)}.whatsapp-float:hover{background:var(--terracotta-dark);transform:translateY(-2px)}.whatsapp-float svg{width:20px;height:20px}
+        #install-btn{position:fixed;bottom:var(--space-md);left:var(--space-md);z-index:1000;padding:0.75rem 1.25rem;background:var(--navy);color:white;border:none;border-radius:50px;font-family:var(--font-body);font-size:0.875rem;font-weight:500;cursor:pointer;box-shadow:0 4px 16px rgba(26,42,64,0.3);transition:all var(--duration) var(--ease-out)}#install-btn:hover{background:var(--navy-light);transform:translateY(-2px)}#install-btn.hidden{display:none}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes scrollPulse{0%,100%{transform:translateX(-100%)}50%{transform:translateX(100%)}}
+        @media(max-width:1024px){.hero-content{grid-template-columns:1fr;text-align:center}.hero-text{order:2}.hero-visual{order:1;min-height:300px}.hero-image-wrapper{position:relative;right:0;top:0;transform:none;width:100%;border-radius:8px}.availability-badge{left:50%;transform:translateX(-50%);bottom:-20px}.hero-stats{justify-content:center}.hero-cta{justify-content:center}.hero-description{margin-left:auto;margin-right:auto}.ubicacion-grid,.contacto-grid{grid-template-columns:1fr}.calc-inputs,.calc-results{grid-template-columns:1fr}}
+        @media(max-width:640px){.hero-stats{flex-direction:column;gap:var(--space-sm);align-items:center}.hero-cta{flex-direction:column;width:100%}.btn{width:100%;justify-content:center}.unidades-header{flex-direction:column;align-items:flex-start}.whatsapp-float span{display:none}.whatsapp-float{padding:1rem;border-radius:50%}.nav-right{gap:var(--space-sm)}}
     </style>
 </head>
 <body>
@@ -207,181 +44,116 @@
         <nav class="nav">
             <div class="container nav-inner">
                 <a href="#" class="logo">RZ<span>.</span></a>
-                <a href="#contacto" class="nav-link">Contacto</a>
+                <div class="nav-right">
+                    <div class="lang-toggle">
+                        <button class="lang-btn" data-lang="en" title="English"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3CclipPath id='a'%3E%3Cpath d='M0 0v30h60V0z'/%3E%3C/clipPath%3E%3CclipPath id='b'%3E%3Cpath d='M30 15h30v15zv15H0zH0V0zV0h30z'/%3E%3C/clipPath%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M0 0v30h60V0z' fill='%23012169'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' stroke='%23fff' stroke-width='6'/%3E%3Cpath d='M0 0l60 30m0-30L0 30' clip-path='url(%23b)' stroke='%23C8102E' stroke-width='4'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23fff' stroke-width='10'/%3E%3Cpath d='M30 0v30M0 15h60' stroke='%23C8102E' stroke-width='6'/%3E%3C/g%3E%3C/svg%3E" alt="EN"></button>
+                        <button class="lang-btn" data-lang="es" title="Español"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 750 500'%3E%3Crect width='750' height='500' fill='%23c60b1e'/%3E%3Crect width='750' height='250' y='125' fill='%23ffc400'/%3E%3C/svg%3E" alt="ES"></button>
+                        <button class="lang-btn" data-lang="fr" title="Français"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600'%3E%3Crect width='900' height='600' fill='%23ED2939'/%3E%3Crect width='600' height='600' fill='%23fff'/%3E%3Crect width='300' height='600' fill='%23002395'/%3E%3C/svg%3E" alt="FR"></button>
+                    </div>
+                    <a href="#contacto" class="nav-link" data-i18n="nav.contact">Contact</a>
+                </div>
             </div>
         </nav>
-        
         <div class="container hero-content">
             <div class="hero-text">
-                <span class="hero-label">Zona Romantica, Puerto Vallarta</span>
-                <h1 class="hero-title">Boutique Living <em>One Block</em> from the Beach</h1>
-                <p class="hero-description">22 exclusive residences designed for modern living, strong rental performance, and long-term value. Steps from Los Muertos Beach.</p>
+                <span class="hero-label" data-i18n="hero.label">Romantic Zone, Puerto Vallarta</span>
+                <h1 class="hero-title" data-i18n="hero.title">Boutique Living <em>One Block</em> from the Beach</h1>
+                <p class="hero-description" data-i18n="hero.description">22 exclusive residences designed for modern living, strong rental performance, and long-term value. Steps from Los Muertos Beach.</p>
                 <div class="hero-stats">
-                    <div class="stat"><div class="stat-number">22</div><div class="stat-label">Residences</div></div>
-                    <div class="stat"><div class="stat-number">6</div><div class="stat-label">Stories</div></div>
-                    <div class="stat"><div class="stat-number">2028</div><div class="stat-label">Delivery</div></div>
+                    <div class="stat"><div class="stat-number">22</div><div class="stat-label" data-i18n="hero.residences">Residences</div></div>
+                    <div class="stat"><div class="stat-number">6</div><div class="stat-label" data-i18n="hero.stories">Stories</div></div>
+                    <div class="stat"><div class="stat-number">2028</div><div class="stat-label" data-i18n="hero.delivery">Delivery</div></div>
                 </div>
                 <div class="hero-cta">
-                    <a href="#calculadora" class="btn btn-primary">Calculate ROI</a>
-                    <a href="#unidades" class="btn btn-secondary">View Units</a>
+                    <a href="#calculadora" class="btn btn-primary" data-i18n="hero.cta1">Calculate ROI</a>
+                    <a href="#unidades" class="btn btn-secondary" data-i18n="hero.cta2">View Units</a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="hero-image-wrapper"><div class="hero-image"></div></div>
-                <div class="availability-badge"><div class="badge-number">18</div><div class="badge-text">units available</div></div>
+                <div class="availability-badge"><div class="badge-number">18</div><div class="badge-text" data-i18n="hero.available">units available</div></div>
             </div>
         </div>
-        
         <div class="hero-footer">
             <div class="container hero-footer-inner">
-                <div class="delivery-info"><span>Pre-sales now open</span><span>•</span><strong>Delivery: April 2028</strong></div>
-                <div class="scroll-indicator"><span>Explore</span><div class="scroll-line"></div></div>
+                <div class="delivery-info"><span data-i18n="hero.presales">Pre-sales now open</span><span>•</span><strong data-i18n="hero.deliveryDate">Delivery: April 2028</strong></div>
+                <div class="scroll-indicator"><span data-i18n="hero.explore">Explore</span><div class="scroll-line"></div></div>
             </div>
         </div>
     </section>
-    
     <section class="ubicacion" id="ubicacion">
         <div class="container ubicacion-grid">
             <div class="ubicacion-content">
-                <h2>In the Heart of the Zone</h2>
-                <p>Walk to everything. Los Muertos Beach, world-class restaurants, galleries, nightlife — all at your doorstep.</p>
+                <h2 data-i18n="location.title">In the Heart of the Zone</h2>
+                <p data-i18n="location.description">Walk to everything. Los Muertos Beach, world-class restaurants, galleries, nightlife — all at your doorstep.</p>
                 <div class="walkable-spots">
                     <div class="spot"><span class="spot-time">1 min</span><span class="spot-name">Los Muertos Beach</span></div>
                     <div class="spot"><span class="spot-time">2 min</span><span class="spot-name">Lazaro Cardenas Park</span></div>
                     <div class="spot"><span class="spot-time">3 min</span><span class="spot-name">Los Muertos Pier</span></div>
-                    <div class="spot"><span class="spot-time">5 min</span><span class="spot-name">Olas Altas Saturday Market</span></div>
-                    <div class="spot"><span class="spot-time">8 min</span><span class="spot-name">Malecon & Downtown</span></div>
+                    <div class="spot"><span class="spot-time">5 min</span><span class="spot-name" data-i18n="location.market">Olas Altas Saturday Market</span></div>
+                    <div class="spot"><span class="spot-time">8 min</span><span class="spot-name" data-i18n="location.malecon">Malecon & Downtown</span></div>
                 </div>
             </div>
-            <div class="ubicacion-map"><div class="map-placeholder"><p>📍 Interactive Map</p><p style="font-size:0.75rem;margin-top:0.5rem">Coming soon</p></div></div>
+            <div class="ubicacion-map"><div class="map-placeholder"><p>📍 <span data-i18n="location.map">Interactive Map</span></p><p style="font-size:0.75rem;margin-top:0.5rem" data-i18n="location.coming">Coming soon</p></div></div>
         </div>
     </section>
-    
     <section class="calculadora" id="calculadora">
         <div class="container">
-            <div class="calc-header"><h2>Investment Calculator</h2><p>See your potential returns based on real Zona Romantica rental data.</p></div>
+            <div class="calc-header"><h2 data-i18n="calc.title">Investment Calculator</h2><p data-i18n="calc.subtitle">See your potential returns based on real Romantic Zone rental data.</p></div>
             <div class="calc-card">
                 <div class="calc-inputs">
-                    <div class="calc-group"><label class="calc-label">Unit Type</label><select class="calc-select" id="unitType"><option value="1br">1 Bedroom (774 sq ft)</option><option value="2br">2 Bedroom (989 sq ft)</option></select></div>
-                    <div class="calc-group"><label class="calc-label">Personal Use (weeks/year)</label><select class="calc-select" id="personalUse"><option value="0">0 weeks — Full rental</option><option value="4">4 weeks</option><option value="8">8 weeks</option><option value="12">12 weeks</option></select></div>
-                    <div class="calc-group"><label class="calc-label">Occupancy Rate</label><select class="calc-select" id="occupancy"><option value="0.65">Conservative (65%)</option><option value="0.75" selected>Average (75%)</option><option value="0.85">Optimistic (85%)</option></select></div>
+                    <div class="calc-group"><label class="calc-label" data-i18n="calc.unitType">Unit Type</label><select class="calc-select" id="unitType"><option value="1br" data-i18n="calc.1br">1 Bedroom (774 sq ft)</option><option value="2br" data-i18n="calc.2br">2 Bedroom (989 sq ft)</option></select></div>
+                    <div class="calc-group"><label class="calc-label" data-i18n="calc.personalUse">Personal Use (weeks/year)</label><select class="calc-select" id="personalUse"><option value="0" data-i18n="calc.weeks0">0 weeks — Full rental</option><option value="4" data-i18n="calc.weeks4">4 weeks</option><option value="8" data-i18n="calc.weeks8">8 weeks</option><option value="12" data-i18n="calc.weeks12">12 weeks</option></select></div>
+                    <div class="calc-group"><label class="calc-label" data-i18n="calc.occupancy">Occupancy Rate</label><select class="calc-select" id="occupancy"><option value="0.65" data-i18n="calc.conservative">Conservative (65%)</option><option value="0.75" selected data-i18n="calc.average">Average (75%)</option><option value="0.85" data-i18n="calc.optimistic">Optimistic (85%)</option></select></div>
                 </div>
                 <div class="calc-results">
-                    <div class="result-item"><div class="result-value" id="annualIncome">$42,500</div><div class="result-label">Est. Annual Income (USD)</div></div>
-                    <div class="result-item"><div class="result-value highlight" id="roiPercent">8.5%</div><div class="result-label">Gross ROI</div></div>
-                    <div class="result-item"><div class="result-value" id="paybackYears">11.8</div><div class="result-label">Years to Payback</div></div>
+                    <div class="result-item"><div class="result-value" id="annualIncome">$42,500</div><div class="result-label" data-i18n="calc.income">Est. Annual Income (USD)</div></div>
+                    <div class="result-item"><div class="result-value highlight" id="roiPercent">8.5%</div><div class="result-label" data-i18n="calc.roi">Gross ROI</div></div>
+                    <div class="result-item"><div class="result-value" id="paybackYears">11.8</div><div class="result-label" data-i18n="calc.payback">Years to Payback</div></div>
                 </div>
-                <p class="calc-disclaimer">* Estimates based on comparable Zona Romantica properties. Consult with Sergio for detailed projections.</p>
+                <p class="calc-disclaimer" data-i18n="calc.disclaimer">* Estimates based on comparable Romantic Zone properties. Consult with Sergio for detailed projections.</p>
             </div>
         </div>
     </section>
-    
     <section class="unidades" id="unidades">
         <div class="container">
             <div class="unidades-header">
-                <div><h2>Available Units</h2><p style="color:var(--volcanic-muted);margin-top:0.5rem">22 residences across 6 floors</p></div>
-                <div class="unidades-filter"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="1br">1 BR</button><button class="filter-btn" data-filter="2br">2 BR</button></div>
+                <div><h2 data-i18n="units.title">Available Units</h2><p style="color:var(--volcanic-muted);margin-top:0.5rem" data-i18n="units.subtitle">22 residences across 6 floors</p></div>
+                <div class="unidades-filter"><button class="filter-btn active" data-filter="all" data-i18n="units.all">All</button><button class="filter-btn" data-filter="1br">1 BR</button><button class="filter-btn" data-filter="2br">2 BR</button></div>
             </div>
             <div class="unidades-grid" id="unitsGrid"></div>
         </div>
     </section>
-    
     <section class="contacto" id="contacto">
         <div class="container contacto-grid">
             <div class="contacto-content">
-                <h2>Secure Your Residence</h2>
-                <p>Pre-sales are now open. Request availability, full floor plans, and schedule a private presentation.</p>
+                <h2 data-i18n="contact.title">Secure Your Residence</h2>
+                <p data-i18n="contact.description">Pre-sales are now open. Request availability, full floor plans, and schedule a private presentation.</p>
                 <div class="contact-info">
                     <a href="mailto:sergio@vallartapropertyfinder.com" class="contact-item">✉️ sergio@vallartapropertyfinder.com</a>
                     <a href="tel:+523221506996" class="contact-item">📱 +52 (322) 150-6996</a>
                     <a href="tel:+12064144420" class="contact-item">🇺🇸 +1 (206) 414-4420 (US)</a>
                 </div>
             </div>
-            <div class="contacto-cta"><a href="https://wa.me/523221506996?text=Hola%20Sergio,%20me%20interesa%20RZ%20Residences" class="btn btn-primary" target="_blank">Schedule a Presentation</a></div>
+            <div class="contacto-cta"><a href="https://wa.me/523221506996?text=Hola%20Sergio,%20me%20interesa%20RZ%20Residences" class="btn btn-primary" target="_blank" data-i18n="contact.cta">Schedule a Presentation</a></div>
         </div>
     </section>
-    
     <footer class="footer"><div class="container"><p>RZ Residences 2026 • <a href="https://duendes.app" target="_blank">duendes.app</a></p></div></footer>
-    
     <a href="https://wa.me/523221506996?text=Hola%20Sergio,%20me%20interesa%20RZ%20Residences" class="whatsapp-float" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span>WhatsApp</span></a>
-    
-    <button id="install-btn" class="hidden" onclick="installApp()">📲 Install App</button>
-    
+    <button id="install-btn" class="hidden" onclick="installApp()">📲 <span data-i18n="pwa.install">Install App</span></button>
     <script>
-        const units = [
-            { number: '101', type: '1br', sqft: 774, price: 285000, status: 'available' },
-            { number: '102', type: '2br', sqft: 989, price: 365000, status: 'available', recommended: true },
-            { number: '201', type: '1br', sqft: 774, price: 295000, status: 'available' },
-            { number: '202', type: '2br', sqft: 989, price: 375000, status: 'sold' },
-            { number: '301', type: '1br', sqft: 774, price: 305000, status: 'available' },
-            { number: '302', type: '2br', sqft: 989, price: 385000, status: 'available' },
-            { number: '401', type: '1br', sqft: 774, price: 315000, status: 'available' },
-            { number: '402', type: '2br', sqft: 989, price: 395000, status: 'sold' },
-            { number: '501', type: '1br', sqft: 774, price: 325000, status: 'available', recommended: true },
-            { number: '502', type: '2br', sqft: 989, price: 405000, status: 'available' },
-            { number: '601', type: '1br', sqft: 774, price: 335000, status: 'sold' },
-            { number: '602', type: '2br', sqft: 989, price: 415000, status: 'available' },
-            { number: '103', type: '1br', sqft: 774, price: 280000, status: 'available' },
-            { number: '104', type: '2br', sqft: 989, price: 360000, status: 'sold' },
-            { number: '203', type: '1br', sqft: 774, price: 290000, status: 'available' },
-            { number: '204', type: '2br', sqft: 989, price: 370000, status: 'available' },
-            { number: '303', type: '1br', sqft: 774, price: 300000, status: 'available' },
-            { number: '304', type: '2br', sqft: 989, price: 380000, status: 'available' },
-            { number: '403', type: '1br', sqft: 774, price: 310000, status: 'available' },
-            { number: '404', type: '2br', sqft: 989, price: 390000, status: 'available' },
-            { number: '503', type: '1br', sqft: 774, price: 320000, status: 'available' },
-            { number: '504', type: '2br', sqft: 989, price: 400000, status: 'available' }
-        ];
-        
-        function renderUnits(filter = 'all') {
-            const grid = document.getElementById('unitsGrid');
-            const filtered = filter === 'all' ? units : units.filter(u => u.type === filter);
-            grid.innerHTML = filtered.map(unit => `
-                <div class="unit-card ${unit.status === 'sold' ? 'sold' : ''}" data-type="${unit.type}">
-                    ${unit.recommended ? '<span class="unit-badge recommended">Sergio Recommends</span>' : unit.status === 'sold' ? '<span class="unit-badge sold">Sold</span>' : '<span class="unit-badge available">Available</span>'}
-                    <div class="unit-number">${unit.number}</div>
-                    <div class="unit-type">${unit.type === '1br' ? '1 Bedroom' : '2 Bedroom, 2 Bath'}</div>
-                    <div class="unit-details"><span class="unit-sqft">${unit.sqft} sq ft</span><span class="unit-price">$${unit.price.toLocaleString()}</span></div>
-                </div>
-            `).join('');
-        }
-        
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderUnits(btn.dataset.filter);
-            });
-        });
-        renderUnits();
-        
-        const prices = { '1br': 300000, '2br': 385000 };
-        const nightlyRates = { '1br': 150, '2br': 210 };
-        
-        function calculateROI() {
-            const unitType = document.getElementById('unitType').value;
-            const personalWeeks = parseInt(document.getElementById('personalUse').value);
-            const occupancy = parseFloat(document.getElementById('occupancy').value);
-            const price = prices[unitType];
-            const nightlyRate = nightlyRates[unitType];
-            const rentalWeeks = 52 - personalWeeks;
-            const occupiedDays = Math.floor(rentalWeeks * 7 * occupancy);
-            const annualIncome = occupiedDays * nightlyRate;
-            const roi = (annualIncome / price) * 100;
-            const payback = price / annualIncome;
-            document.getElementById('annualIncome').textContent = '$' + annualIncome.toLocaleString();
-            document.getElementById('roiPercent').textContent = roi.toFixed(1) + '%';
-            document.getElementById('paybackYears').textContent = payback.toFixed(1);
-        }
-        
-        document.querySelectorAll('.calc-select').forEach(select => select.addEventListener('change', calculateROI));
-        calculateROI();
-        
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; document.getElementById('install-btn').classList.remove('hidden'); });
-        function installApp() { if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(r => { if (r.outcome === 'accepted') document.getElementById('install-btn').classList.add('hidden'); deferredPrompt = null; }); }
-        window.addEventListener('appinstalled', () => document.getElementById('install-btn').classList.add('hidden'));
-        if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+const translations={en:{'nav.contact':'Contact','hero.label':'Romantic Zone, Puerto Vallarta','hero.title':'Boutique Living <em>One Block</em> from the Beach','hero.description':'22 exclusive residences designed for modern living, strong rental performance, and long-term value. Steps from Los Muertos Beach.','hero.residences':'Residences','hero.stories':'Stories','hero.delivery':'Delivery','hero.cta1':'Calculate ROI','hero.cta2':'View Units','hero.available':'units available','hero.presales':'Pre-sales now open','hero.deliveryDate':'Delivery: April 2028','hero.explore':'Explore','location.title':'In the Heart of the Zone','location.description':'Walk to everything. Los Muertos Beach, world-class restaurants, galleries, nightlife — all at your doorstep.','location.market':'Olas Altas Saturday Market','location.malecon':'Malecon & Downtown','location.map':'Interactive Map','location.coming':'Coming soon','calc.title':'Investment Calculator','calc.subtitle':'See your potential returns based on real Romantic Zone rental data.','calc.unitType':'Unit Type','calc.1br':'1 Bedroom (774 sq ft)','calc.2br':'2 Bedroom (989 sq ft)','calc.personalUse':'Personal Use (weeks/year)','calc.weeks0':'0 weeks — Full rental','calc.weeks4':'4 weeks','calc.weeks8':'8 weeks','calc.weeks12':'12 weeks','calc.occupancy':'Occupancy Rate','calc.conservative':'Conservative (65%)','calc.average':'Average (75%)','calc.optimistic':'Optimistic (85%)','calc.income':'Est. Annual Income (USD)','calc.roi':'Gross ROI','calc.payback':'Years to Payback','calc.disclaimer':'* Estimates based on comparable Romantic Zone properties. Consult with Sergio for detailed projections.','units.title':'Available Units','units.subtitle':'22 residences across 6 floors','units.all':'All','units.available':'Available','units.sold':'Sold','units.recommended':'Sergio Recommends','units.1br':'1 Bedroom','units.2br':'2 Bedroom, 2 Bath','contact.title':'Secure Your Residence','contact.description':'Pre-sales are now open. Request availability, full floor plans, and schedule a private presentation.','contact.cta':'Schedule a Presentation','pwa.install':'Install App'},es:{'nav.contact':'Contacto','hero.label':'Zona Romantica, Puerto Vallarta','hero.title':'Vida Boutique <em>a una Cuadra</em> de la Playa','hero.description':'22 residencias exclusivas disenadas para la vida moderna, alto rendimiento en renta y valor a largo plazo. A pasos de Playa Los Muertos.','hero.residences':'Residencias','hero.stories':'Pisos','hero.delivery':'Entrega','hero.cta1':'Calcular ROI','hero.cta2':'Ver Unidades','hero.available':'unidades disponibles','hero.presales':'Preventa abierta','hero.deliveryDate':'Entrega: Abril 2028','hero.explore':'Explorar','location.title':'En el Corazon de la Zona','location.description':'Camina a todos lados. Playa Los Muertos, restaurantes de clase mundial, galerias, vida nocturna — todo a tu puerta.','location.market':'Mercado Sabatino Olas Altas','location.malecon':'Malecon y Centro','location.map':'Mapa Interactivo','location.coming':'Proximamente','calc.title':'Calculadora de Inversion','calc.subtitle':'Mira tu retorno potencial basado en datos reales de renta de la Zona Romantica.','calc.unitType':'Tipo de Unidad','calc.1br':'1 Recamara (72 m2)','calc.2br':'2 Recamaras (92 m2)','calc.personalUse':'Uso Personal (semanas/ano)','calc.weeks0':'0 semanas — Renta completa','calc.weeks4':'4 semanas','calc.weeks8':'8 semanas','calc.weeks12':'12 semanas','calc.occupancy':'Tasa de Ocupacion','calc.conservative':'Conservador (65%)','calc.average':'Promedio (75%)','calc.optimistic':'Optimista (85%)','calc.income':'Ingreso Anual Est. (USD)','calc.roi':'ROI Bruto','calc.payback':'Anos para Recuperar','calc.disclaimer':'* Estimados basados en propiedades comparables de la Zona Romantica. Consulta con Sergio para proyecciones detalladas.','units.title':'Unidades Disponibles','units.subtitle':'22 residencias en 6 pisos','units.all':'Todas','units.available':'Disponible','units.sold':'Vendida','units.recommended':'Sergio Recomienda','units.1br':'1 Recamara','units.2br':'2 Recamaras, 2 Banos','contact.title':'Asegura Tu Residencia','contact.description':'La preventa esta abierta. Solicita disponibilidad, planos completos y agenda una presentacion privada.','contact.cta':'Agendar Presentacion','pwa.install':'Instalar App'},fr:{'nav.contact':'Contact','hero.label':'Zone Romantique, Puerto Vallarta','hero.title':'Vie Boutique <em>a un Pate</em> de la Plage','hero.description':'22 residences exclusives concues pour la vie moderne, un rendement locatif eleve et une valeur a long terme. A quelques pas de la plage Los Muertos.','hero.residences':'Residences','hero.stories':'Etages','hero.delivery':'Livraison','hero.cta1':'Calculer le ROI','hero.cta2':'Voir les Unites','hero.available':'unites disponibles','hero.presales':'Pre-vente ouverte','hero.deliveryDate':'Livraison: Avril 2028','hero.explore':'Explorer','location.title':'Au Coeur de la Zone','location.description':'Tout a pied. Plage Los Muertos, restaurants de classe mondiale, galeries, vie nocturne — tout a votre porte.','location.market':'Marche du Samedi Olas Altas','location.malecon':'Malecon et Centre-ville','location.map':'Carte Interactive','location.coming':'Bientot disponible','calc.title':'Calculateur d\'Investissement','calc.subtitle':'Decouvrez vos rendements potentiels bases sur les donnees reelles de location de la Zone Romantique.','calc.unitType':'Type d\'Unite','calc.1br':'1 Chambre (72 m2)','calc.2br':'2 Chambres (92 m2)','calc.personalUse':'Usage Personnel (semaines/an)','calc.weeks0':'0 semaines — Location complete','calc.weeks4':'4 semaines','calc.weeks8':'8 semaines','calc.weeks12':'12 semaines','calc.occupancy':'Taux d\'Occupation','calc.conservative':'Conservateur (65%)','calc.average':'Moyen (75%)','calc.optimistic':'Optimiste (85%)','calc.income':'Revenu Annuel Est. (USD)','calc.roi':'ROI Brut','calc.payback':'Annees pour Recuperer','calc.disclaimer':'* Estimations basees sur des proprietes comparables de la Zone Romantique. Consultez Sergio pour des projections detaillees.','units.title':'Unites Disponibles','units.subtitle':'22 residences sur 6 etages','units.all':'Toutes','units.available':'Disponible','units.sold':'Vendu','units.recommended':'Sergio Recommande','units.1br':'1 Chambre','units.2br':'2 Chambres, 2 SdB','contact.title':'Reservez Votre Residence','contact.description':'La pre-vente est ouverte. Demandez la disponibilite, les plans complets et planifiez une presentation privee.','contact.cta':'Planifier une Presentation','pwa.install':'Installer l\'App'}};
+let currentLang=localStorage.getItem('rz-lang')||'en';
+function setLanguage(lang){currentLang=lang;localStorage.setItem('rz-lang',lang);document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key]){el.tagName==='OPTION'?el.textContent=translations[lang][key]:el.innerHTML=translations[lang][key]}});document.querySelectorAll('.lang-btn').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));renderUnits(document.querySelector('.filter-btn.active')?.dataset.filter||'all')}
+document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.dataset.lang)));
+const units=[{number:'101',type:'1br',sqft:774,price:285000,status:'available'},{number:'102',type:'2br',sqft:989,price:365000,status:'available',recommended:true},{number:'201',type:'1br',sqft:774,price:295000,status:'available'},{number:'202',type:'2br',sqft:989,price:375000,status:'sold'},{number:'301',type:'1br',sqft:774,price:305000,status:'available'},{number:'302',type:'2br',sqft:989,price:385000,status:'available'},{number:'401',type:'1br',sqft:774,price:315000,status:'available'},{number:'402',type:'2br',sqft:989,price:395000,status:'sold'},{number:'501',type:'1br',sqft:774,price:325000,status:'available',recommended:true},{number:'502',type:'2br',sqft:989,price:405000,status:'available'},{number:'601',type:'1br',sqft:774,price:335000,status:'sold'},{number:'602',type:'2br',sqft:989,price:415000,status:'available'},{number:'103',type:'1br',sqft:774,price:280000,status:'available'},{number:'104',type:'2br',sqft:989,price:360000,status:'sold'},{number:'203',type:'1br',sqft:774,price:290000,status:'available'},{number:'204',type:'2br',sqft:989,price:370000,status:'available'},{number:'303',type:'1br',sqft:774,price:300000,status:'available'},{number:'304',type:'2br',sqft:989,price:380000,status:'available'},{number:'403',type:'1br',sqft:774,price:310000,status:'available'},{number:'404',type:'2br',sqft:989,price:390000,status:'available'},{number:'503',type:'1br',sqft:774,price:320000,status:'available'},{number:'504',type:'2br',sqft:989,price:400000,status:'available'}];
+function renderUnits(filter='all'){const grid=document.getElementById('unitsGrid');const filtered=filter==='all'?units:units.filter(u=>u.type===filter);const t=translations[currentLang];grid.innerHTML=filtered.map(unit=>{const badgeText=unit.recommended?t['units.recommended']:(unit.status==='sold'?t['units.sold']:t['units.available']);const badgeClass=unit.recommended?'recommended':unit.status;const typeText=unit.type==='1br'?t['units.1br']:t['units.2br'];return`<div class="unit-card ${unit.status==='sold'?'sold':''}" data-type="${unit.type}"><span class="unit-badge ${badgeClass}">${badgeText}</span><div class="unit-number">${unit.number}</div><div class="unit-type">${typeText}</div><div class="unit-details"><span class="unit-sqft">${unit.sqft} sq ft</span><span class="unit-price">$${unit.price.toLocaleString()}</span></div></div>`}).join('')}
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderUnits(btn.dataset.filter)})});
+const prices={'1br':300000,'2br':385000};const nightlyRates={'1br':150,'2br':210};
+function calculateROI(){const unitType=document.getElementById('unitType').value;const personalWeeks=parseInt(document.getElementById('personalUse').value);const occupancy=parseFloat(document.getElementById('occupancy').value);const price=prices[unitType];const nightlyRate=nightlyRates[unitType];const rentalWeeks=52-personalWeeks;const occupiedDays=Math.floor(rentalWeeks*7*occupancy);const annualIncome=occupiedDays*nightlyRate;const roi=(annualIncome/price)*100;const payback=price/annualIncome;document.getElementById('annualIncome').textContent='$'+annualIncome.toLocaleString();document.getElementById('roiPercent').textContent=roi.toFixed(1)+'%';document.getElementById('paybackYears').textContent=payback.toFixed(1)}
+document.querySelectorAll('.calc-select').forEach(select=>select.addEventListener('change',calculateROI));
+let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('install-btn').classList.remove('hidden')});function installApp(){if(!deferredPrompt)return;deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome==='accepted')document.getElementById('install-btn').classList.add('hidden');deferredPrompt=null})}window.addEventListener('appinstalled',()=>document.getElementById('install-btn').classList.add('hidden'));if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+setLanguage(currentLang);calculateROI();
     </script>
 </body>
 </html>
